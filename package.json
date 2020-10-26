@@ -1,0 +1,25 @@
+{
+  "name": "backclinica",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "For requests to the server at the end points use POSTMAN.",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "dev": "nodemon app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "bcryptjs": "^2.4.3",
+    "express": "^4.17.1",
+    "heroku": "^7.46.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.10.10",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.6"
+  },
+  "devDependencies": {}
+}
