@@ -1,6 +1,5 @@
 {
   "name": "backclinica",
-  "type": "module",
   "version": "1.0.0",
   "description": "For requests to the server at the end points use POSTMAN.",
   "main": "index.js",

@@ -1,6 +1,6 @@
-import mongoose from 'mongoose';
-import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
+const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
+const jwt = require ('jsonwebtoken');
 const UserSchema = new mongoose.Schema({
     name: String,
     email: {
@@ -11,12 +11,12 @@ const UserSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true,
-        validate: {
+        /* validate: {
             validator: function(v) {
                 return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,10}$/.test(v);
             },
             message: () => `La contraseña debe contener al menos una minúscula, una mayúscula, un número,un carácter especial, y debe estar entre 8 y 10 carácteres de longitud!`
-        },
+        },*/
     },
     role: {
         type: String,
@@ -50,4 +50,4 @@ UserSchema.methods.generateAuthToken = function() {
     return token;
 }
 const UserModel = mongoose.model('User', UserSchema);
-export default UserModel
+module.exports = UserModel;

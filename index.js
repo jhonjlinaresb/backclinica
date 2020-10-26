@@ -12,32 +12,34 @@ const {modifyUser} = require('./db/dbuser');
 const {loginUser} = require('./db/dbuser');
 const {userAppoinments, adduserAppoinment} = require('./db/dbappointment');
 
-
-//Middleware
-app.use(cors);
-app.use(express.json());
-
-//db connection
 const dbconnect = require('./config/dbconnect');
 const { deleteOne } = require('./models/User');
 dbconnect();
 
+//Middleware
+app.use(cors);
+app.use(express.json());
+app.options('/*', (req, res) => res.send());
+//db connection
+
+
+
 //ACTIONS
 
 //user actions
-app.get('/user/showAll', showUsers);
-app.get('/user/id/:userId', showUsersId);
-app.get('/user/:dni/appoinments', userAppoinments);
+app.get('/users/showAll', showUsers);
+app.get('/users/id/:userId', showUsersId);
+app.get('/users/:dni/appoinments', userAppoinments);
 
-app.post('/user/register', registerUser);
-app.post('/user/login', loginUser);
-app.post('/user/logout', logoutUser);
-app.post('/user/:dni/appoinments', adduserAppoinment);
+app.post('/users/register', registerUser);
+app.post('/users/login', loginUser);
+app.post('/users/logout', logoutUser);
+app.post('/users/:dni/appoinments', adduserAppoinment);
 
-app.delete('/user/delete', deleteUser);
-app.delete('user/:delete/appoinments', deleteOne);
+app.delete('/users/delete', deleteUser);
+app.delete('users/:delete/appoinments', deleteOne);
 
-app.put('/user/modify', modifyUser);
+app.put('/users/modify', modifyUser);
 
 
 //port listen

@@ -38,14 +38,14 @@ const registerUser = async (req, res) => {
 
 
     if(!regExEmail.test(bodyData.email)){
-        res.send({
+        res.status(400).send({
             message: "El email introducido no es válido"
         });
         return;
     }
 
     if(!regExPassword.test(bodyData.password)){
-        res.send({
+        res.status(400).send({
             message: "El password introducido no es válido"
         });
         return;

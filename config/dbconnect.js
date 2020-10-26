@@ -1,7 +1,7 @@
 const dbconnect = () => {
     //dB connection//////////
     const mongoose = require("mongoose");
-    const uri = "mongodb+srv://Admin:1234@cluster0.weyv5.mongodb.net/dbcitas?retryWrites=true&w=majority";
+    const uri = process.env.MongoURI || 'mongodb://localhost:27017/dbclinica'
 
     mongoose.connect(uri, {
             useNewUrlParser: true,

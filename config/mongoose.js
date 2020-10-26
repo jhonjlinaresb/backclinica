@@ -1,5 +1,5 @@
-import mongoose from 'mongoose';
-const MongoURI = process.env.MongoURI || 'mongodb+srv://Admin:1234@cluster0.weyv5.mongodb.net/dbcitas?retryWrites=true&w=majority'
+const mongoose = require ('mongoose');
+const MongoURI = process.env.MongoURI || 'mongodb://localhost:27017/dbclinica'
 
 mongoose.connect(MongoURI, {
     useCreateIndex: true,
