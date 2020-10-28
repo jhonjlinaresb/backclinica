@@ -10,7 +10,7 @@ const {registerUser} = require('./db/dbuser');
 const {deleteUser} = require('./db/dbuser');
 const {modifyUser} = require('./db/dbuser');
 const {loginUser} = require('./db/dbuser');
-const {userAppoinments, adduserAppoinment} = require('./db/dbappointment');
+const {userAppointments, adduserAppointment} = require('./db/dbappointment');
 
 const dbconnect = require('./config/dbconnect');
 const { deleteOne } = require('./models/User');
@@ -29,15 +29,15 @@ app.options('/*', (req, res) => res.send());
 //user actions
 app.get('/users/showAll', showUsers);
 app.get('/users/id/:userId', showUsersId);
-app.get('/users/:dni/appoinments', userAppoinments);
+app.get('/users/:dni/appoinments', userAppointments);
 
 app.post('/users/register', registerUser);
 app.post('/users/login', loginUser);
 app.post('/users/logout', logoutUser);
-app.post('/users/:dni/appoinments', adduserAppoinment);
+app.post('/users/:dni/appoinments', adduserAppointment);
 
 app.delete('/users/delete', deleteUser);
-app.delete('users/:delete/appoinments', deleteOne);
+app.delete('users/:delete/appointments', deleteOne);
 
 app.put('/users/modify', modifyUser);
 

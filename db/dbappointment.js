@@ -1,7 +1,7 @@
 const AppointmentModel = require('../models/appointment');
 const UserModel=require('../models/User');
 
-const adduserAppoinment = async (req, res)  => {
+const adduserAppointment = async (req, res)  => {
         console.log(req.body);
         const appointment = await AppointmentModel({
             status: req.body.status,
@@ -31,7 +31,7 @@ const adduserAppoinment = async (req, res)  => {
         }
     }
 
-    const userAppoinments = async (req, res) => {
+    const userAppointments = async (req, res) => {
         try {
             const appointment = await AppointmentModel.find({
                 dni: req.params.dni
@@ -48,6 +48,6 @@ const adduserAppoinment = async (req, res)  => {
         }
     }
 
-module.exports = {adduserAppoinment, 
+module.exports = {adduserAppointment, 
                   deleteOne,
-                  userAppoinments};
+                  userAppointments};
