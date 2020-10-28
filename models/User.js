@@ -30,11 +30,11 @@ UserSchema.methods.toJSON = function(params) {
     delete user.tokens;
     return user;
 }
-UserSchema.pre('save', async function(next) {
+/*UserSchema.pre('save', async function(next) {
     const user = this;
     user.password = await bcrypt.hash(user.password, 9);
     next()
-});
+});*/
 UserSchema.statics.checkCredentials = async function(credentials) {
     const user = await this.findOne({
         email: credentials.email
@@ -49,5 +49,5 @@ UserSchema.methods.generateAuthToken = function() {
     const token = jwt.sign({ _id: user._id }, 'mipapamemimamucho', { expiresIn: '2y' });
     return token;
 }
-const UserModel = mongoose.model('User', UserSchema);
+const UserModel = mongoose.model('user', UserSchema);
 module.exports = UserModel;

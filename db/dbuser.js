@@ -1,9 +1,7 @@
 const UserModel=require('../models/User');
-
+const jwt=require('jsonwebtoken');
 const mongoose=require('mongoose');
-
 const bcrypt = require("bcryptjs");
-
 const fs=require('fs');
 
 const showUsers = (req, res) => {
@@ -145,7 +143,7 @@ const loginUser = async (req, res) => {
     });
 
     if(!usuarioEncontrado){
-        res.send({
+        res.status(400).send({
             message: "No existe el usuario"
         })
     }else{
@@ -158,14 +156,12 @@ const loginUser = async (req, res) => {
             };
             
             let user1 = await UserModel.findOne(email);
-            user1.token = user1.password;
-            await user1.save(); 
+            const token = user1.generateAuthToken();
             res.send({
-                name: user1.username,
-                email: user1.email
+                user1,token
             })
         }else{
-            res.send({
+            res.status(400).send({
                 message: "Credenciales incorrectas"
             })
         }
@@ -193,6 +189,21 @@ const logoutUser = async (req, res) => {
     }
 }
 
+const auth = async(req, res, next) => {
+    try {
+        const token = req.headers.authorization;
+        const payload = jwt.verify(token, 'mipapamemimamucho');
+        const user = await UserModel.findById(payload._id);
+        if (!user) {
+            return res.status(401).send({ message: 'You are not authorized' })
+        }
+        req.user = user;
+        next()
+    } catch (error) {
+        console.error(error)
+        return res.status(401).send({ message: 'You are not authorized', error })
+    }
+}
 module.exports = {
     showUsers,
     showUsersId,
@@ -200,5 +211,6 @@ module.exports = {
     deleteUser,
     modifyUser,
     loginUser,
-    logoutUser
+    logoutUser,
+    auth
 }
