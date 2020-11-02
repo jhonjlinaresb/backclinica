@@ -2,6 +2,7 @@
 const express=require('express');
 const app=express();
 const cors=require('./middleware/cors');
+const PORT=process.env.PORT || 3001;
 
 //Modular imports
 const {showUsers, logoutUser} = require('./db/dbuser');
@@ -43,4 +44,4 @@ app.put('/users/modify', modifyUser);
 
 
 //port listen
-app.listen(3001, ()=> console.log('>>>SERVER ONLINE'));
+app.listen(PORT, ()=> console.log('>>>SERVER ONLINE'));
