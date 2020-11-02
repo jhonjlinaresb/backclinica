@@ -10,7 +10,7 @@ const UserSchema = new mongoose.Schema({
     },
     password: {
         type: String,
-        required: true,
+        required: true
         /* validate: {
             validator: function(v) {
                 return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,10}$/.test(v);
@@ -18,9 +18,13 @@ const UserSchema = new mongoose.Schema({
             message: () => `La contraseña debe contener al menos una minúscula, una mayúscula, un número,un carácter especial, y debe estar entre 8 y 10 carácteres de longitud!`
         },*/
     },
+    dni: {
+        type: String,
+        required: true
+    },
     role: {
         type: String,
-        enum: ['admin', 'user', 'doctor', 'Dios'],
+        enum: ['admin', 'user', 'doctor'],
     },
     tokens: [String]
 });
