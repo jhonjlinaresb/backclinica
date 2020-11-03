@@ -1,6 +1,4 @@
 const AppointmentModel = require('../models/appointment');
-const UserModel=require('../models/User');
-
 const adduserAppointment = async (req, res)  => {
         console.log(req.body);
         const appointment = await AppointmentModel({
@@ -15,12 +13,9 @@ const adduserAppointment = async (req, res)  => {
 
     const deleteOne = async (req, res)  => {
         try {
-            const appointment = await AppointmentModel.findByIdAndDelete({
-                _id: req.params._id
-            })
+             await AppointmentModel.findOneAndDelete({dni:req.params.dni})
             res.send({
                 message: 'Delete cite',
-                appointment
             })
         } catch (error) {
             console.error(error);
