@@ -4,4 +4,4 @@ const cors = function(req, res, next) {
     res.header("Access-Control-Allow-Methods", "GET, POST, PUT,OPTIONS, DELETE");
     next();
 };
-module.exports = cors;
+module.exports = cors
